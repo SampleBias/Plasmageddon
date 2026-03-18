@@ -174,29 +174,14 @@ export class SchematicApp {
   }
 
   private drawPromoterGlyph(g: Graphics, w: number, h: number, color: number, strand: number) {
-    g.beginFill(color, 0.8);
+    g.rect(0, 0, w, h).fill({ color, alpha: 0.2 });
+
     if (strand === 1) {
-      g.moveTo(0, h);
-      g.lineTo(0, h * 0.3);
-      g.lineTo(w * 0.7, h * 0.3);
-      g.lineTo(w * 0.7, 0);
-      g.lineTo(w, h * 0.3);
-      g.lineTo(w * 0.7, h * 0.6);
-      g.lineTo(w * 0.7, h * 0.3);
-      g.moveTo(0, h);
-      g.lineTo(w, h);
-      g.lineTo(w, h * 0.6);
+      g.poly([0, h, 0, h * 0.3, w * 0.7, h * 0.3, w, h * 0.15, w * 0.7, 0, w * 0.7, h * 0.3, w, h * 0.3, w, h]);
     } else {
-      g.moveTo(w, h);
-      g.lineTo(w, h * 0.3);
-      g.lineTo(w * 0.3, h * 0.3);
-      g.lineTo(w * 0.3, 0);
-      g.lineTo(0, h * 0.3);
-      g.lineTo(w * 0.3, h * 0.6);
-      g.lineTo(w * 0.3, h * 0.3);
+      g.poly([w, h, w, h * 0.3, w * 0.3, h * 0.3, 0, h * 0.15, w * 0.3, 0, w * 0.3, h * 0.3, 0, h * 0.3, 0, h]);
     }
-    g.endFill();
-    g.rect(0, 0, w, h).fill({ color, alpha: 0.3 });
+    g.fill({ color, alpha: 0.6 });
   }
 
   private drawTerminatorGlyph(g: Graphics, w: number, h: number, color: number) {
@@ -212,23 +197,12 @@ export class SchematicApp {
   }
 
   private drawCDSGlyph(g: Graphics, w: number, h: number, color: number, strand: number) {
-    g.beginFill(color, 0.6);
     if (strand === 1) {
-      g.moveTo(0, 0);
-      g.lineTo(w - 15, 0);
-      g.lineTo(w, h / 2);
-      g.lineTo(w - 15, h);
-      g.lineTo(0, h);
-      g.closePath();
+      g.poly([0, 0, w - 15, 0, w, h / 2, w - 15, h, 0, h]);
     } else {
-      g.moveTo(15, 0);
-      g.lineTo(w, 0);
-      g.lineTo(w, h);
-      g.lineTo(15, h);
-      g.lineTo(0, h / 2);
-      g.closePath();
+      g.poly([15, 0, w, 0, w, h, 15, h, 0, h / 2]);
     }
-    g.endFill();
+    g.fill({ color, alpha: 0.6 });
   }
 
   private drawGenericGlyph(g: Graphics, w: number, h: number, color: number) {
