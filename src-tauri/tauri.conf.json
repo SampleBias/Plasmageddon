@@ -10,7 +10,6 @@
     "beforeBuildCommand": "npm run build"
   },
   "app": {
-    "title": "Plasmageddon",
     "windows": [
       {
         "title": "Plasmageddon — End of Bad Designs",
@@ -32,8 +31,7 @@
       "icons/32x32.png",
       "icons/128x128.png",
       "icons/128x128@2x.png",
-      "icons/icon.icns",
-      "icons/icon.ico"
+      "icons/icon.png"
     ]
   }
 }
