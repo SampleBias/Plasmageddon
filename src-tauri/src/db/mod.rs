@@ -3,6 +3,7 @@ pub mod constructs;
 pub mod parts;
 pub mod simulator;
 pub mod chat;
+pub mod notebooks;
 
 use rusqlite::Connection;
 use std::path::PathBuf;
