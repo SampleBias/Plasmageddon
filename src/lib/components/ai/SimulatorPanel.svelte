@@ -189,8 +189,8 @@
 
       {#if mode === "ode"}
         <div>
-          <label class="mb-1 block text-xs font-medium text-base-300">Duration (hours)</label>
-          <input type="number" bind:value={timeHours} min={1} max={200}
+          <label for="sim-duration" class="mb-1 block text-xs font-medium text-base-300">Duration (hours)</label>
+          <input id="sim-duration" type="number" bind:value={timeHours} min={1} max={200}
             class="w-full rounded border border-base-600 bg-base-700 px-2 py-1.5 text-xs text-base-100 outline-none focus:border-accent" />
         </div>
 
@@ -200,28 +200,28 @@
           </summary>
           <div class="mt-2 grid grid-cols-2 gap-2">
             <div>
-              <label class="mb-0.5 block text-[10px] text-base-400">α (max txn)</label>
-              <input type="number" bind:value={odeAlpha} step={1}
+              <label for="sim-alpha" class="mb-0.5 block text-[10px] text-base-400">α (max txn)</label>
+              <input id="sim-alpha" type="number" bind:value={odeAlpha} step={1}
                 class="w-full rounded border border-base-600 bg-base-700 px-1.5 py-1 text-[11px] text-base-100 outline-none focus:border-accent" />
             </div>
             <div>
-              <label class="mb-0.5 block text-[10px] text-base-400">α₀ (basal)</label>
-              <input type="number" bind:value={odeAlpha0} step={0.01}
+              <label for="sim-alpha0" class="mb-0.5 block text-[10px] text-base-400">α₀ (basal)</label>
+              <input id="sim-alpha0" type="number" bind:value={odeAlpha0} step={0.01}
                 class="w-full rounded border border-base-600 bg-base-700 px-1.5 py-1 text-[11px] text-base-100 outline-none focus:border-accent" />
             </div>
             <div>
-              <label class="mb-0.5 block text-[10px] text-base-400">β (translation)</label>
-              <input type="number" bind:value={odeBeta} step={0.5}
+              <label for="sim-beta" class="mb-0.5 block text-[10px] text-base-400">β (translation)</label>
+              <input id="sim-beta" type="number" bind:value={odeBeta} step={0.5}
                 class="w-full rounded border border-base-600 bg-base-700 px-1.5 py-1 text-[11px] text-base-100 outline-none focus:border-accent" />
             </div>
             <div>
-              <label class="mb-0.5 block text-[10px] text-base-400">n (Hill coeff)</label>
-              <input type="number" bind:value={odeN} step={0.1}
+              <label for="sim-n" class="mb-0.5 block text-[10px] text-base-400">n (Hill coeff)</label>
+              <input id="sim-n" type="number" bind:value={odeN} step={0.1}
                 class="w-full rounded border border-base-600 bg-base-700 px-1.5 py-1 text-[11px] text-base-100 outline-none focus:border-accent" />
             </div>
             <div class="col-span-2">
-              <label class="mb-0.5 block text-[10px] text-base-400">Km (half-max)</label>
-              <input type="number" bind:value={odeKm} step={1}
+              <label for="sim-km" class="mb-0.5 block text-[10px] text-base-400">Km (half-max)</label>
+              <input id="sim-km" type="number" bind:value={odeKm} step={1}
                 class="w-full rounded border border-base-600 bg-base-700 px-1.5 py-1 text-[11px] text-base-100 outline-none focus:border-accent" />
             </div>
           </div>
@@ -250,24 +250,30 @@
         {/if}
       {:else}
         <div>
-          <label class="mb-1 block text-xs font-medium text-base-300">Host</label>
-          <select bind:value={host} class="w-full rounded border border-base-600 bg-base-700 px-3 py-2 text-xs text-base-100 outline-none focus:border-accent">
-            {#each hosts as h}
-              <option value={h}>{h}</option>
-            {/each}
-          </select>
+          <label class="mb-1 block text-xs font-medium text-base-300">
+            Host
+            <select bind:value={host} class="mt-1 block w-full rounded border border-base-600 bg-base-700 px-3 py-2 text-xs text-base-100 outline-none focus:border-accent">
+              {#each hosts as h}
+                <option value={h}>{h}</option>
+              {/each}
+            </select>
+          </label>
         </div>
 
         <div class="grid grid-cols-2 gap-2">
           <div>
-            <label class="mb-1 block text-xs font-medium text-base-300">Copy #</label>
-            <input type="number" bind:value={copyNumber} min={1} max={1000}
-              class="w-full rounded border border-base-600 bg-base-700 px-2 py-1.5 text-xs text-base-100 outline-none focus:border-accent" />
+            <label class="mb-1 block text-xs font-medium text-base-300">
+              Copy #
+              <input type="number" bind:value={copyNumber} min={1} max={1000}
+                class="mt-1 block w-full rounded border border-base-600 bg-base-700 px-2 py-1.5 text-xs text-base-100 outline-none focus:border-accent" />
+            </label>
           </div>
           <div>
-            <label class="mb-1 block text-xs font-medium text-base-300">Time (h)</label>
-            <input type="number" bind:value={timeHours} min={1} max={168}
-              class="w-full rounded border border-base-600 bg-base-700 px-2 py-1.5 text-xs text-base-100 outline-none focus:border-accent" />
+            <label class="mb-1 block text-xs font-medium text-base-300">
+              Time (h)
+              <input type="number" bind:value={timeHours} min={1} max={168}
+                class="mt-1 block w-full rounded border border-base-600 bg-base-700 px-2 py-1.5 text-xs text-base-100 outline-none focus:border-accent" />
+            </label>
           </div>
         </div>
 

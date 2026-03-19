@@ -29,8 +29,11 @@
 </script>
 
 <div
+  role="button"
+  tabindex="0"
   draggable="true"
   ondragstart={handleDragStart}
+  aria-label="Drag {part.name} to add to construct"
   class="group cursor-grab rounded-lg border border-base-700 bg-base-800 px-3 py-2 transition-colors hover:border-base-500 active:cursor-grabbing"
 >
   <div class="flex items-center justify-between">

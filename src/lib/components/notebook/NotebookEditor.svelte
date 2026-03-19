@@ -8,7 +8,7 @@
   }
 
   let { notebook, onsave }: Props = $props();
-  let title = $state(notebook.title);
+  let title = $state("");
   let editorEl: HTMLDivElement | undefined = $state();
   let saving = $state(false);
   let saveStatus = $state("");
