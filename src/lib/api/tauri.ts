@@ -246,6 +246,76 @@ export const settings = {
   set: (key: string, value: string) => invoke<void>("set_setting", { key, value }),
 };
 
+// -- Notebooks --
+export interface Notebook {
+  id: string;
+  repo_id: string;
+  title: string;
+  content: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export const notebooks = {
+  create: (repoId: string, title: string) =>
+    invoke<Notebook>("create_notebook", { repoId, title }),
+  get: (id: string) => invoke<Notebook>("get_notebook", { id }),
+  list: (repoId: string) => invoke<Notebook[]>("list_notebooks", { repoId }),
+  update: (id: string, title: string, content: string) =>
+    invoke<Notebook>("update_notebook", { id, title, content }),
+  delete: (id: string) => invoke<void>("delete_notebook", { id }),
+};
+
+// -- ODE Simulator --
+export interface CircuitPart {
+  name: string;
+  part_type: string;
+}
+
+export interface OdeParams {
+  alpha?: number;
+  alpha0?: number;
+  beta?: number;
+  n?: number;
+  k_m?: number;
+}
+
+export interface SpeciesTimeCourse {
+  name: string;
+  color: string;
+  values: number[];
+}
+
+export interface OdeSimResult {
+  time_points: number[];
+  species: SpeciesTimeCourse[];
+  steady_state: boolean;
+  period_hours: number | null;
+  circuit_type: string;
+  notes: string;
+}
+
+export const odeSimulator = {
+  run: (
+    circuitType: string,
+    parts: CircuitPart[],
+    durationHours: number,
+    dt: number,
+    parameters?: OdeParams,
+  ) =>
+    invoke<OdeSimResult>("run_ode_simulation", {
+      circuitType,
+      parts,
+      durationHours,
+      dt,
+      parameters: parameters ?? null,
+    }),
+  detectCircuit: (parts: CircuitPart[]) =>
+    invoke<string>("detect_circuit", { parts }),
+  seedBacterialDemo: () =>
+    invoke<string>("seed_bacterial_demo"),
+};
+
 export const events = {
   onAiChunk: (handler: (chunk: string) => void) =>
     listen<string>("ai:chunk", (e) => handler(e.payload)),

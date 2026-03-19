@@ -4,6 +4,7 @@ export const activeSidebarItem = $state({ value: "home" });
 export const rightSidebarOpen = $state({ value: true });
 export const rightSidebarTab = $state({ value: "tools" as "tools" | "chat" | "compiler" | "simulator" });
 export const activeEditorView = $state({ value: "schematic" as "schematic" | "sequence" | "circular" | "split" });
+export const currentNotebookRepoId = $state({ value: "" });
 
 export function navigate(path: string) {
   currentRoute.value = path;
@@ -12,4 +13,5 @@ export function navigate(path: string) {
   else if (path.startsWith("/editor")) activeSidebarItem.value = "editor";
   else if (path === "/settings") activeSidebarItem.value = "settings";
   else if (path === "/chat") activeSidebarItem.value = "chat";
+  else if (path.startsWith("/notebook")) activeSidebarItem.value = "notebook";
 }

@@ -19,6 +19,7 @@ pub fn run() {
                 .expect("Failed to get app data dir");
             let database = AppDatabase::new(app_dir).expect("Failed to init database");
             database.seed_default_parts().ok();
+            database.seed_bacterial_parts().ok();
             app.manage(database);
             Ok(())
         })
@@ -77,6 +78,16 @@ pub fn run() {
             // Settings
             commands::settings_cmds::get_setting,
             commands::settings_cmds::set_setting,
+            // Notebooks
+            commands::notebook_cmds::create_notebook,
+            commands::notebook_cmds::get_notebook,
+            commands::notebook_cmds::list_notebooks,
+            commands::notebook_cmds::update_notebook,
+            commands::notebook_cmds::delete_notebook,
+            // ODE Simulator
+            commands::ode_cmds::run_ode_simulation,
+            commands::ode_cmds::detect_circuit,
+            commands::ode_cmds::seed_bacterial_demo,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Plasmageddon");

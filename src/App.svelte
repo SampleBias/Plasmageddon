@@ -8,6 +8,7 @@
   import ReposPage from "./routes/repos/ReposPage.svelte";
   import EditorPage from "./routes/editor/EditorPage.svelte";
   import SettingsPage from "./routes/settings/SettingsPage.svelte";
+  import NotebookPage from "./routes/notebook/NotebookPage.svelte";
 
   function handleKeydown(e: KeyboardEvent) {
     if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -35,6 +36,8 @@
         <EditorPage />
       {:else if currentRoute.value === "/settings"}
         <SettingsPage />
+      {:else if currentRoute.value.startsWith("/notebook")}
+        <NotebookPage />
       {:else}
         <HomePage />
       {/if}
